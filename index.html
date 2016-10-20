@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<!--[if IE 9]>
+    <html class="ie9" lang="fr-FR">    <![endif]-->
+<!--[if IE 8]>
+    <html class="ie8" lang="fr-FR">    <![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="robots" content="noindex">
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <meta name="Copyright" content="">
+
+    <title>The plunge</title>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 7]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!--     <link rel="icon" href="favicon.ico" sizes="16x16" type="image/png">
+ -->
+ </head>
+
+<body>
+
+	<header></header>
+
+	<div class="container">
+
+		<div class="box">
+			<canvas></canvas>
+			<p>(((This is my canvas)))</p>
+		</div> <!-- .box -->
+
+	</div> <!-- .container -->
+
+	<footer></footer>
+
+	<!-- socket.io -->
+	<!-- <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> -->
+	<script src="/socket.io/socket.io.js"></script>
+
+	<script>
+	  var socket = io('http://localhost');
+	  socket.on('news', function (data) {
+	    console.log(data);
+	    socket.emit('my other event', { my: 'data' });
+	  });
+	</script>
+
+</body>
+</html>
+
