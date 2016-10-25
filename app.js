@@ -2,6 +2,7 @@
 var app = require('express')(),
     server = require('http').createServer(app),
     io = require('socket.io').listen(server),
+    twit = require('twit'),
     fs = require('fs');
 
 // Chargement de la page index.html
