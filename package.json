@@ -1,0 +1,32 @@
+{
+  "name": "the_plunge",
+  "version": "0.1.0",
+  "description": "twitter hashtags in real time",
+  "main": "app.js",
+  "dependencies": {
+    "socket.io": "~1.5.0",
+    "pixi.js": "~4.1.0",
+    "express": "~4.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hodd/the_plunge.git"
+  },
+  "keywords": [
+    "node.js",
+    "twitter",
+    "pixi.js",
+    "socket.io",
+    "express.js"
+  ],
+  "author": "hodd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hodd/the_plunge/issues"
+  },
+  "homepage": "https://github.com/hodd/the_plunge#readme"
+}

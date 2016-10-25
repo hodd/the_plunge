@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr-FR">
+<html lang="en">
 <!--[if IE 9]>
-    <html class="ie9" lang="fr-FR">    <![endif]-->
+    <html class="ie9" lang="en">    <![endif]-->
 <!--[if IE 8]>
-    <html class="ie8" lang="fr-FR">    <![endif]-->
+    <html class="ie8" lang="en">    <![endif]-->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -43,24 +43,32 @@
 	<div class="container">
 
 		<div class="box">
-			<canvas></canvas>
-			<p>(((This is my canvas)))</p>
+
+			<canvas>HASHTAGS TWITTER</canvas>
+			<p>^ This is my canvas ^</p>
+
 		</div> <!-- .box -->
 
 	</div> <!-- .container -->
 
 	<footer></footer>
 
+	<!-- serveur -->
+	<script src="app.js"></script>
 	<!-- socket.io -->
-	<!-- <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> -->
 	<script src="/socket.io/socket.io.js"></script>
 
 	<script>
-	  var socket = io('http://localhost');
-	  socket.on('news', function (data) {
-	    console.log(data);
-	    socket.emit('my other event', { my: 'data' });
-	  });
+
+    // Connexion à socket.io (chat OC)
+    var socket = io.connect('http://localhost:8080');
+
+	// var socket = io('http://localhost');
+	socket.on('news', function (data) {
+       console.log(data);
+	   socket.emit('my other event', { my: 'data' });
+	});
+
 	</script>
 
 </body>
