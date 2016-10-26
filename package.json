@@ -19,10 +19,10 @@
   },
   "keywords": [
     "node.js",
-    "twitter",
+    "twit",
     "pixi.js",
     "socket.io",
-    "express.js"
+    "express"
   ],
   "author": "hodd",
   "license": "MIT",

@@ -1,15 +1,17 @@
-THE PLUNGE (in progress)
-
-
-Installing :
+The plunge (in progress)
+=========
 
 This app works on nodeJS v4.6.0 (node -v)
 
+----------
+Installing :
+-------------
+1 - Install node modules :
 > npm install
 
-> make your own config.js :
 
-module.exports = {
+2 - Make your own config.js :
+> module.exports = {
   consumer_key:         '...',
   consumer_secret:      '...',
   access_token:         '...',

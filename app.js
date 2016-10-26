@@ -1,12 +1,12 @@
 var express = require('express'),
-  app = express(),
-  http = require('http'),
-  server = http.createServer(app),
-	Twit = require('twit'),
+	app = express(),
+	http = require('http'),
+	server = http.createServer(app),
+	twit = require('twit'),
 	io = require('socket.io').listen(server);
 
 var config = require('./config');
-var T = new Twit(config);
+var T = new twit(config);
 
 var param = { // requête
   q: 'basejump' || 'freefly' || 'wingsuit' && 'video' || 'gopro',
