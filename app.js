@@ -8,9 +8,9 @@ var express = require('express'),
 var config = require('./config');
 var T = new Twit(config);
 
-var param = {
-  q: 'basejump',
-  count: 10
+var param = { // requête
+  q: 'basejump' || 'freefly' || 'wingsuit' && 'video' || 'gopro',
+  count: 10,
 };
 
 server.listen(8080);
@@ -21,18 +21,59 @@ app.get('/', function (req, res) {
       res.sendFile(__dirname + '/index.html');
 });
 
-//  search twitter for all tweets containing the word 'basejump'
+
+// connexion à twitter, requête, affichage résultats
 
 T.get('search/tweets', param, gotdata);
 
 function gotdata (err, data, response) {
-	console.log(data)
-};
 
-// filter the public stream by english tweets containing `#apple`
+	var tweets = data.statuses;
+	for (var i = 0; i < tweets.length; i++) {
 
-// var stream = T.stream('statuses/filter', { track: '#basejump', language: 'en' })
+		console.log(tweets[i].text);
+	}
 
-// stream.on('tweet', function (tweet) {
-//   console.log(tweet)
-// })
+}
+
+// poster un tweet
+
+/*
+function tweetIt() {
+		var newTweet = {
+		status: 'hello from node.js !'
+	}
+
+	T.post('statuses/update', newTweet, tweeted);
+
+	function tweeted (err, data, response) {
+		if (err) {
+			console.log("try again");
+		}else {
+			console.log("yeah");
+		}
+	}
+}
+*/
+
+
+// @user cité
+
+/*
+var stream = T.stream('user');
+
+// dès que quelqu'un me suit
+stream.on('follow', followed);
+
+function followed(eventMsg) {
+	var name = eventMsg.source.name;
+	var screenName = eventMsg.source.screen_name;
+	tweetIt('@' + screenName + 'Thank you for following me !');
+}
+*/
+
+
+
+
+
+
