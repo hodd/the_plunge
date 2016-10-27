@@ -10,7 +10,7 @@ var T = new twit(config);
 
 var param = { // requête
   q: 'basejump' || 'freefly' || 'wingsuit' && 'video' || 'gopro',
-  count: 10,
+  count: 4,
 };
 
 server.listen(8080);
@@ -24,22 +24,25 @@ app.get('/', function (req, res) {
 
 // connexion à twitter, requête, affichage résultats
 
-T.get('search/tweets', param, gotdata);
+function twitter() {
 
-function gotdata (err, data, response) {
+	T.get('search/tweets', param, gotdata);
 
-	var tweets = data.statuses;
-	for (var i = 0; i < tweets.length; i++) {
-		console.log(tweets[i].text);
+	function gotdata (err, data, response) {
+		var tweets = data.statuses;
+		for (var i = 0; i < tweets.length; i++) {
+			console.log(tweets[i].text);
+		}
 	}
-
 }
+
 
 // poster un tweet
 
 /*
-function tweetIt() {
-		var newTweet = {
+function postTweet() {
+
+	var newTweet = {
 		status: 'hello from node.js !'
 	}
 
@@ -67,7 +70,7 @@ stream.on('follow', followed);
 function followed(eventMsg) {
 	var name = eventMsg.source.name;
 	var screenName = eventMsg.source.screen_name;
-	tweetIt('@' + screenName + 'Thank you for following me !');
+	postTweet('@' + screenName + 'Thank you for following me !');
 }
 */
 
