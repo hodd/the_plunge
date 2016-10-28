@@ -44,24 +44,29 @@
 
 <body>
 
-	<header></header>
+	<header>
+        <h1>the plunge</h1>
+    </header>
 
 	<div class="container">
 
 		<div class="box">
 
-			<canvas id="twitter"></canvas>
+			<canvas id="plunge"></canvas>
 			<p>^ This is my canvas ^</p>
 
 		</div> <!-- .box -->
 
 	</div> <!-- .container -->
 
-	<footer></footer>
+	<footer>
+        <p>This is my footer</p>
+    </footer>
 
 	<!-- serveur -->
 	<script src="app.js"></script>
 
+    <!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
 
 	<!-- socket.io -->
@@ -70,12 +75,17 @@
 	<script>
 
     // Connexion à socket.io (chat OC)
-    // var socket = io.connect('http://localhost:8080');
-    var socket = io.connect();
+    var socket = io.connect('http://localhost:8080');
 
-	socket.on('stream', function(tweet){
-          $("#data").append(tweet.text);
+	/*
+    socket.on('connection', function(socket){
+
+       function(twitter){
+           $("#plunge").append('<p>' + one + '</p><br>');
+        };
+
     });
+    */
 
 	</script>
 
