@@ -5,16 +5,9 @@ var express = require('express'),
 	twit = require('twit'),
 	io = require('socket.io').listen(server);
 
-var config = require('./config');
-var T = new twit(config);
-
-var param = { // requête
-  q: 'basejump' || 'freefly' || 'wingsuit' && 'video' || 'gopro',
-  count: 4,
-};
-
 server.listen(8080);
 
+// express, routes
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
@@ -22,20 +15,27 @@ app.get('/', function (req, res) {
 });
 
 
-// connexion à twitter, requête, affichage résultats
-
+// connexion et requête twitter
 function twitter() {
+
+	var config = require('./config'); // keys
+	var T = new twit(config);
+
+	var param = { // requête
+  		q: 'basejump' || 'freefly' || 'wingsuit' || 'windtunnel' || 'skydiving' && 'video' || 'gopro' && 'jump' || 'fly' || 'cloud' || 'dream' || 'sky',
+  		count: 10,
+	};
 
 	T.get('search/tweets', param, gotdata);
 
 	function gotdata (err, data, response) {
 		var tweets = data.statuses;
 		for (var i = 0; i < tweets.length; i++) {
-			console.log(tweets[i].text);
+			var one = console.log(tweets[i].text);
 		}
 	}
 }
-
+twitter();
 
 // poster un tweet
 
@@ -59,7 +59,7 @@ function postTweet() {
 */
 
 
-// @user cité
+// citer @ user
 
 /*
 var stream = T.stream('user');
