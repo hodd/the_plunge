@@ -8,12 +8,13 @@
 
 html{
 	font-size: 62.5%;
-	/* 16px X 62.5 = 10px */
+	/* 16px x 62.5 = 10px */
 }
 
 body{
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
+	font-size: 15px; /* IE7 & IE8 */
 	font-size: 1.5rem; /* = 15px */
 	color: #fff;
 	background-color: #1A1A1A;
@@ -31,6 +32,7 @@ header{
 }
 
 h1{
+	font-size: 20px; /* IE7 & IE8 */
 	font-size: 2rem;
 	font-weight: 500;
 	color: #222;
@@ -54,7 +56,8 @@ canvas{
 	margin: 0 auto;
 	padding: 5rem;
 	width: 50rem;
-	background: #ffbb11;
+	/*background: #ffbb11;*/
+	border: 1px #ffbb11 solid;
 	text-align: center;
 	color: #222;
 	font-weight: 300;
