@@ -17,7 +17,7 @@ body{
 	font-size: 15px; /* IE7 & IE8 */
 	font-size: 1.5rem; /* = 15px */
 	color: #fff;
-	background-color: #1A1A1A;
+	background-color: #2c3f44;
 }
 
 header{
@@ -35,7 +35,7 @@ h1{
 	font-size: 20px; /* IE7 & IE8 */
 	font-size: 2rem;
 	font-weight: 500;
-	color: #222;
+	color: #2c3f44;
 	text-transform: uppercase;
 	display: block;
 	float: left;
@@ -46,24 +46,21 @@ h1{
 .container{
 	width: 60rem;
 	position: relative;
-	margin: 13rem auto;
+	margin: 10rem auto;
 	padding: 5rem;
 	border: 2px #ffbb11 solid;
 	z-index: -1;
 }
 
-canvas{
+.box{
 	margin: 0 auto;
-	padding: 5rem;
+	padding: 2rem;
 	width: 50rem;
-	/*background: #ffbb11;*/
-	border: 1px #ffbb11 solid;
+	background: #ffbb11;
+	/*border: 1px #ffbb11 solid;*/
 	text-align: center;
-	color: #222;
+	color: #fff;
 	font-weight: 300;
-}
-
-.box p{
 	text-align: center;
 }
 
