@@ -7,32 +7,36 @@ var express = require('express'),
 
 server.listen(8080);
 
-// express, routes
-app.use(express.static(__dirname));
-app.use(express.static(__dirname + '/public'));
+// Express
 
-app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/index.html');
+app.use(express.static(__dirname)); // directory of currently executing script
+app.use(express.static(__dirname + '/public')); // using static files in public folder (css, img)
+
+app.get('/', function (req, res) { // GET request homepage
+	res.sendFile(__dirname + '/index.html'); // respond index.html
 });
 
 
-// connexion et requête twitter
+// Twitter
 
-var config = require('./config'); // keys
+var config = require('./config'); // twitter keys
 var T = new twit(config);
 
-var param = { // requête
+var param = { // twitter request
 	q: 'basejump' || 'freefly' || 'wingsuit' || 'windtunnel' || 'skydiving' && 'video' || 'gopro' && 'jump' || 'fly' || 'cloud' || 'dream' || 'sky',
 	count: 10,
 };
 
+// twitter connection and search
 T.get('search/tweets', param, function(err, data, response) {
+
 	var tweets = data.statuses;
 	//console.log(tweets);
 	for (var i = 0; i < tweets.length; i++) {
 		console.log(tweets[i].text)+'\n';
-		io.emit('tweet', tweets[i].text);
+		io.emit('tweet', tweets[i].text); // sending twitter event
 	}
+
 });
 
 
