@@ -8,34 +8,33 @@ var express = require('express'),
 server.listen(8080);
 
 // express, routes
+app.use(express.static(__dirname));
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-      res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/index.html');
 });
 
 
 // connexion et requête twitter
-function twitter() {
 
-	var config = require('./config'); // keys
-	var T = new twit(config);
+var config = require('./config'); // keys
+var T = new twit(config);
 
-	var param = { // requête
-  		q: 'basejump' || 'freefly' || 'wingsuit' || 'windtunnel' || 'skydiving' && 'video' || 'gopro' && 'jump' || 'fly' || 'cloud' || 'dream' || 'sky',
-  		count: 10,
-	};
+var param = { // requête
+	q: 'basejump' || 'freefly' || 'wingsuit' || 'windtunnel' || 'skydiving' && 'video' || 'gopro' && 'jump' || 'fly' || 'cloud' || 'dream' || 'sky',
+	count: 10,
+};
 
-	T.get('search/tweets', param, gotdata);
-
-	function gotdata (err, data, response) {
-		var tweets = data.statuses;
-		for (var i = 0; i < tweets.length; i++) {
-			var one = console.log(tweets[i].text);
-		}
+T.get('search/tweets', param, function(err, data, response) {
+	var tweets = data.statuses;
+	//console.log(tweets);
+	for (var i = 0; i < tweets.length; i++) {
+		console.log(tweets[i].text)+'\n';
+		io.emit('tweet', tweets[i].text);
 	}
-}
-twitter();
+});
+
 
 // poster un tweet
 
