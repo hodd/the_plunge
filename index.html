@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <!--[if IE 9]>
     <html class="ie9" lang="en">    <![endif]-->
@@ -49,8 +49,10 @@
     </header>
 
     <div class="container">
+        <p>^ This is my container ^</p>
 
         <div id="plunge" class="box">
+            <p>^ I am #plunge ^</p>
             <p>v This is my canvas v</p>
         </div> <!-- .box -->
 
@@ -69,8 +71,29 @@
     <script src="/socket.io/socket.io.js"></script>
 
     <script>
+        // socket connection
+        var socket = io.connect('http://localhost:8080');
 
+        // console.log(PIXI); // pixi test
 
+        // create the renderer
+        // var renderer = PIXI.autoDetectRenderer(256, 256); // background / no difference ?
+        var renderer = PIXI.autoDetectRenderer(256, 256,
+            {antialias: false, transparent: false, resolution: 1}
+        );
+        renderer.view.style.border = "3px dashed white";
+        renderer.backgroundColor = 0x1E2A2D; // hexadecimal color
+
+        // add the canvas to the plunge div
+        var plunge = document.getElementById('plunge');
+        plunge.appendChild(renderer.view);
+
+        // new container object called stage
+        // stage = visible content
+        var stage = new PIXI.Container();
+
+        // tell the renderer to render the stage
+        renderer.render(stage);
 
 	</script>
 
