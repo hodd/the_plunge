@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <!--[if IE 9]>
     <html class="ie9" lang="en">    <![endif]-->
@@ -38,44 +38,38 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
 <!-- css -->
-<link href='style.css' rel='stylesheet' type='text/css'>
+<link href='/style.css' rel='stylesheet' type='text/css'>
 
 </head>
 
 <body>
 
-	<header>
+    <header>
         <h1>the plunge</h1>
     </header>
 
-	<div class="container">
+    <div class="container">
 
-		<div class="box">
+        <div id="plunge" class="box">
+            <p>v This is my canvas v</p>
+        </div> <!-- .box -->
 
-			<canvas id="plunge"></canvas>
-			<p>^ This is my canvas ^</p>
+    </div> <!-- .container -->
 
-		</div> <!-- .box -->
-
-	</div> <!-- .container -->
-
-	<footer>
+    <footer>
         <p>This is my footer</p>
     </footer>
 
-	<!-- serveur -->
-	<script src="app.js"></script>
+    <!-- <script src="/app.js"></script> -->
 
-    <!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+    <!-- pixi.js -->
+    <script src="node_modules/pixi.js/bin/pixi.min.js"></script>
 
-	<!-- socket.io -->
-	<script src="/socket.io/socket.io.js"></script>
+    <!-- socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
 
-	<script>
+    <script>
 
-    // Connexion à socket.io (chat OC)
-    var socket = io.connect('http://localhost:8080');
 
 
 	</script>
