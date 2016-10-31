@@ -43,28 +43,25 @@ h1{
 	padding-left: 5rem;
 }
 
-.container{
+#plunge{
 	width: 60rem;
 	position: relative;
-	margin: 10rem auto;
-	padding: 5rem;
+	margin: 10rem auto 5rem;
+	padding: 2rem;
+	text-align: center;
+	color: #ffbb11;
 	border: 2px #ffbb11 solid;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	z-index: -1;
 }
 
-.box{
-	margin: 0 auto;
-	padding: 2rem;
-	width: 50rem;
-	background: #ffbb11;
-	/*border: 1px #ffbb11 solid;*/
-	text-align: center;
+.plunge-text,.canvas-text{
+	padding-bottom: 5px;
+}
+
+.canvas-text{
 	color: #fff;
-	font-weight: 300;
-	text-align: center;
 }
 
 ul{

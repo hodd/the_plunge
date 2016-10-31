@@ -48,15 +48,10 @@
         <h1>the plunge</h1>
     </header>
 
-    <div class="container">
-        <p>^ This is my container ^</p>
-
-        <div id="plunge" class="box">
-            <p>^ I am #plunge ^</p>
-            <p>v This is my canvas v</p>
-        </div> <!-- .box -->
-
-    </div> <!-- .container -->
+    <div id="plunge" class="container">
+            <p class="plunge-text">#plunge</p>
+            <p class="canvas-text">v This is my canvas v</p>
+    </div>
 
     <footer>
         <p>This is my footer</p>
@@ -77,12 +72,15 @@
         // console.log(PIXI); // pixi test
 
         // create the renderer
-        // var renderer = PIXI.autoDetectRenderer(256, 256); // background / no difference ?
         var renderer = PIXI.autoDetectRenderer(256, 256,
             {antialias: false, transparent: false, resolution: 1}
         );
-        renderer.view.style.border = "3px dashed white";
-        renderer.backgroundColor = 0x1E2A2D; // hexadecimal color
+
+        renderer.view.style.border = "2px solid white"; // border test
+        renderer.backgroundColor = 0xffbb11; // hexadecimal color
+
+        renderer.autoResize = true; // canvas' resolution > resize
+        renderer.resize(400, 400); // resize the canvas
 
         // add the canvas to the plunge div
         var plunge = document.getElementById('plunge');
