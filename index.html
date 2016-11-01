@@ -59,40 +59,45 @@
 
     <!-- <script src="/app.js"></script> -->
 
-    <!-- pixi.js -->
-    <script src="node_modules/pixi.js/bin/pixi.min.js"></script>
-
     <!-- socket.io -->
     <script src="/socket.io/socket.io.js"></script>
 
+    <!-- pixi.js -->
+    <script src="node_modules/pixi.js/bin/pixi.min.js"></script>
+
     <script>
-        // socket connection
-        var socket = io.connect('http://localhost:8080');
+        window.onload = function() {
 
-        // console.log(PIXI); // pixi test
+            // socket connection
+            var socket = io.connect('http://localhost:8080');
 
-        // create the renderer
-        var renderer = PIXI.autoDetectRenderer(256, 256,
-            {antialias: false, transparent: false, resolution: 1}
-        );
+            // create the renderer
+            var renderer = PIXI.autoDetectRenderer(400, 400,
+                {antialias: false, transparent: false, resolution: 1}
+            );
 
-        renderer.view.style.border = "2px solid white"; // border test
-        renderer.backgroundColor = 0xffbb11; // hexadecimal color
+            // create the renderer
+            // var renderer = PIXI.autoDetectRenderer(400, 400,
+            //     {antialias: false, backgroundColor: 0xffbb11, resolution: 1});
 
-        renderer.autoResize = true; // canvas' resolution > resize
-        renderer.resize(400, 400); // resize the canvas
+            //renderer.view.style.border = "1px solid white"; // canvas border
 
-        // add the canvas to the plunge div
-        var plunge = document.getElementById('plunge');
-        plunge.appendChild(renderer.view);
+            // add the canvas to the plunge div
+            var plunge = document.getElementById('plunge');
+            plunge.appendChild(renderer.view);
 
-        // new container object called stage
-        // stage = visible content
-        var stage = new PIXI.Container();
+            socket.on('tweet', function(msg) {
 
-        // tell the renderer to render the stage
-        renderer.render(stage);
+                // new container object called 'stage'
+                var stage = new PIXI.Container();
 
+                stage.addChild(msg);
+
+                // render the 'stage'
+                renderer.render(stage);
+
+            });
+        }
 	</script>
 
 </body>
