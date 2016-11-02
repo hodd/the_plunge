@@ -1,7 +1,7 @@
 The plunge (in progress)
 =========
 
-This app works on nodeJS v4.6.0 (node -v)
+This app works on nodeJS v7.0.0 (node -v)
 
 ----------
 Installing :
