@@ -8,7 +8,6 @@
     "node-tweet-stream": "~2.0.1",
     "pixi.js": "~4.1.0",
     "socket.io": "~1.5.0",
-    "twit": "~2.2.5"
   },
   "devDependencies": {},
   "scripts": {
@@ -20,7 +19,8 @@
   },
   "keywords": [
     "node.js",
-    "twit",
+    "twitter",
+    "node-tweet-stream",
     "pixi.js",
     "socket.io",
     "express"

@@ -20,3 +20,5 @@ Installing :
 }
 
 ... and get your Twitter keys here : https://apps.twitter.com/
+
+3 - Start the server with "node app.js" and open your browser at "localhost:8080" to see what happens
