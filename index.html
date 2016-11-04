@@ -71,11 +71,14 @@
             // socket connection
             var socket = io.connect('http://localhost:8080');
 
+            var stageWidth = 400;
+            var stageHeight = 0;
+
             // create the renderer
-            var renderer = PIXI.autoDetectRenderer(400, 2000, {
-                backgroundColor : 0x1E2A2D,
+            var renderer = PIXI.autoDetectRenderer(stageWidth, stageHeight, {
+                //backgroundColor : 0x1E2A2D,
                 antialias: false,
-                transparent: false,
+                transparent: true,
                 resolution: 1
             });
 
@@ -87,28 +90,34 @@
             var i = 0;
 
             socket.on('tweet', function(tweet) {
-                var username = tweet.user.name; // tweet username
-                var text = tweet.text; // tweet text
-
-                var style = {
-                    font: "12px sans-serif",
-                    fill: "white",
-                    wordWrap : true,
-                    wordWrapWidth : renderer.width // word wrap > canvas size
-                };
 
                 //console.log(i+' > user = '+tweet.user.name+' text = '+text+' media = '+media);
 
-                var message = new PIXI.Text(text, style);
-
-                message.x = 10;
-                message.y = i * 200;
-
-                stage.addChild(message);
-
                 if (typeof(tweet.entities.media) !== 'undefined') {
 
+                    stageHeight += 200;
+
+                    renderer.resize(stageWidth, stageHeight);
+
+                    var username = tweet.user.name; // tweet username
+                    var text = tweet.text; // tweet text
+
+                    var style = {
+                        font: "12px sans-serif",
+                        fill: "white",
+                        wordWrap : true,
+                        wordWrapWidth : renderer.width // word wrap > canvas size
+                    };
+
+                    var message = new PIXI.Text(text, style);
+
+                    message.x = 0;
+                    message.y = i * 200;
+
+                    stage.addChild(message);
+
                     var media = tweet.entities.media[0];
+
 
                     console.log('MEDIA > ', media, ' id = ', media.id, ' type=', media.type, ' url =', media.media_url);
 
@@ -119,7 +128,7 @@
                         //image.scale.set(0.5,0.5)
 
                         image.width = 100;
-                        image.height = 100; // auto ?
+                        image.height = 100;
 
                         image.interactive = true;
                         image.click = function(data) {
@@ -131,28 +140,25 @@
                         image.x = 0;
                         image.y = message.y + 50; // 50px under the text
 
-
                         stage.addChild(image);
 
-                    } else if (media.type == 'video') {
+                    }/* else if (media.type == 'video') {
 
                         console.log('VIDEO!!! ', media.media_url);
-
 
                         // create a video texture from a path
                         var texture = PIXI.Texture.fromVideo(media.media_url);
 
-                        // create a new Sprite using the video texture
+                        // create a new Sprite using the video texture (yes it's that easy)
                         var videoSprite = new PIXI.Sprite(texture);
 
-                        videoSprite.width = 300;
-                        videoSprite.height = 300; // auto ?
+                        videoSprite.width = renderer.width;
+                        videoSprite.height = renderer.height;
 
                         stage.addChild(videoSprite);
-                    }
+                    }*/
+                    i++;
                 }
-
-                i++;
             });
 
             // add the canvas to the plunge div
@@ -170,6 +176,7 @@
                 renderer.render(stage);
             }
         }
+
     </script>
 
 </body>

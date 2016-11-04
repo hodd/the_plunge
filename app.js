@@ -1,8 +1,8 @@
 var express = require('express'),
 	app = express(),
 	http = require('http'),
+	twit = require('node-tweet-stream'),
 	server = http.createServer(app),
-	twit = require('twit'),
 	io = require('socket.io').listen(server);
 
 server.listen(8080);
@@ -18,27 +18,24 @@ app.get('/', function (req, res) { // GET request homepage
 
 
 // Twitter
-
 var config = require('./config'); // twitter keys
 var T = new twit(config);
 
-var param = { // twitter request
-	q: 'basejump' || 'freefly' || 'wingsuit' || 'windtunnel' || 'skydiving' && 'video' || 'gopro' && 'jump' || 'fly' || 'cloud' || 'dream' || 'sky',
-	count: 10,
-};
+var i = 0;
 
-// twitter connection and search
-T.get('search/tweets', param, function(err, data, response) {
+T.on('tweet', function (tweet) {
+  //console.log('tweet received', tweet)
+  console.log(i +'/ '+ tweet.text+'\n');
+  io.emit('tweet', tweet);
+  i++;
+})
 
-	var tweets = data.statuses;
-	//console.log(tweets);
-	for (var i = 0; i < tweets.length; i++) {
-		console.log(i +'/ '+ tweets[i].text)+'\n';
-		io.emit('tweet', tweets[i].text); // send twitter event
-	}
+T.on('error', function (err) {
+  console.log('Twitter stream error')
+})
 
-});
-
+// twitter request
+T.track('brexit')
 
 
 

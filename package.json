@@ -1,12 +1,13 @@
 {
   "name": "the_plunge",
-  "version": "0.0.7",
+  "version": "0.8.1",
   "description": "twitter hashtags in real time",
   "main": "app.js",
   "dependencies": {
-    "socket.io": "~1.5.0",
-    "pixi.js": "~4.1.0",
     "express": "~4.14.0",
+    "node-tweet-stream": "~2.0.1",
+    "pixi.js": "~4.1.0",
+    "socket.io": "~1.5.0",
     "twit": "~2.2.5"
   },
   "devDependencies": {},

@@ -1,4 +1,4 @@
-The plunge (in progress)
+The plunge (v 0.8.1 - in progress)
 =========
 
 This app works on nodeJS v7.0.0 (node -v)
@@ -14,8 +14,8 @@ Installing :
 > module.exports = {
   consumer_key:         '...',
   consumer_secret:      '...',
-  access_token:         '...',
-  access_token_secret:  '...',
+  token:         		'...',
+  token_secret:  		'...',
   timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
 }
 
