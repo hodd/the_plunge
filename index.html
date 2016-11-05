@@ -21,15 +21,15 @@
     <title>The plunge</title>
 
     <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!--[if lt IE 8]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!--[if lt IE 7]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
 <!-- <link rel="icon" href="favicon.ico" sizes="16x16" type="image/png"> -->
@@ -49,8 +49,8 @@
     </header>
 
     <div id="plunge" class="container">
-        <p class="plunge-text">#plunge</p>
-        <p class="canvas-text">v This is my canvas v</p>
+            <p class="plunge-text">#plunge</p>
+            <p class="canvas-text">v This is my canvas v</p>
     </div>
 
     <footer>
@@ -71,18 +71,18 @@
             // socket connection
             var socket = io.connect('http://localhost:8080');
 
-            var stageWidth = 400;
+            var stageWidth = 400; // px
             var stageHeight = 0;
 
             // create the renderer
             var renderer = PIXI.autoDetectRenderer(stageWidth, stageHeight, {
-                //backgroundColor : 0x1E2A2D,
+                backgroundColor : 0x1E2A2D,
                 antialias: false,
-                transparent: true,
+                //transparent: true,
                 resolution: 1
             });
 
-            renderer.view.style.border = "1px solid white"; // canvas border
+            //renderer.view.style.border = "1px solid white"; // canvas border
 
             // new container object called 'stage'
             var stage = new PIXI.Container();
@@ -103,7 +103,7 @@
                     var text = tweet.text; // tweet text
 
                     var style = {
-                        font: "12px sans-serif",
+                        font: "14px sans-serif",
                         fill: "white",
                         wordWrap : true,
                         wordWrapWidth : renderer.width // word wrap > canvas size
@@ -111,7 +111,7 @@
 
                     var message = new PIXI.Text(text, style);
 
-                    message.x = 0;
+                    message.x = 20; // padding 20 px
                     message.y = i * 200;
 
                     stage.addChild(message);
@@ -137,7 +137,7 @@
 
                         //console.log('Image > ', image);
 
-                        image.x = 0;
+                        image.x = 20; // padding 20 px
                         image.y = message.y + 50; // 50px under the text
 
                         stage.addChild(image);
@@ -176,8 +176,7 @@
                 renderer.render(stage);
             }
         }
-
-    </script>
+	</script>
 
 </body>
 </html>
