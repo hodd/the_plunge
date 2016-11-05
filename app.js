@@ -1,11 +1,12 @@
 var express = require('express'),
 	app = express(),
 	http = require('http'),
-	twit = require('node-tweet-stream'),
+	twitter = require('node-tweet-stream'),
 	server = http.createServer(app),
 	io = require('socket.io').listen(server);
 
 server.listen(8080);
+console.log('This server runs on localhost:8080');
 
 // Express
 
@@ -16,12 +17,12 @@ app.get('/', function (req, res) { // GET request homepage
 	res.sendFile(__dirname + '/index.html'); // respond index.html
 });
 
-
 // Twitter
-var config = require('./config'); // twitter keys
-var T = new twit(config);
 
-var i = 0;
+var config = require('./config'); // twitter keys
+var T = new twitter(config);
+
+var i = 1;
 
 T.on('tweet', function (tweet) {
   //console.log('tweet received', tweet)
@@ -35,9 +36,14 @@ T.on('error', function (err) {
 })
 
 // twitter request
-T.track('brexit')
-
-
+T.track('skydiving');
+T.track('freefly');
+T.track('wingsuit');
+T.track('windtunnel');
+T.track('basejump');
+T.track('dropzone');
+T.track('inclouds');
+T.track('clouds');
 
 
 
