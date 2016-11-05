@@ -82,5 +82,7 @@ footer{
 	font-size: 12px; /* IE7 & IE8 */
 	font-size: 1.2rem;
 	background-color: #1E2A2D;
-	position: absolute;
+	position: relative;
+	bottom: 0;
+	left: 0;
 }
