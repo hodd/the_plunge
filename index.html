@@ -48,10 +48,19 @@
         <h1>the plunge</h1>
     </header>
 
-    <div id="plunge" class="container">
-            <p class="plunge-text">#plunge</p>
-            <p class="canvas-text">v This is my canvas v</p>
-    </div>
+    <section id="content">
+
+        <div id="counter">
+            <p class="upper-text">#counter</p>
+            <p class="lower-text">my score : </p>
+        </div>
+
+        <div id="plunge">
+                <p class="upper-text">#plunge</p>
+                <p class="lower-text">v This is my canvas v</p>
+        </div>
+
+    </section>
 
     <footer>
         <p>This is my footer</p>
@@ -150,17 +159,17 @@
 
                         stage.addChild(image);
 
-                    }/* else if (media.type == 'video') {
+                    } /*else if (media.type == 'video') {
 
-                        console.log('VIDEO!!! ', media.media_url);
+                        console.log('VIDEO!!! >>>>>>', media.media_url);
 
                         // create a video texture from a path
                         var texture = PIXI.Texture.fromVideo(media.media_url);
 
-                        // create a new Sprite using the video texture (yes it's that easy)
+                        // create a new sprite using the video texture
                         var videoSprite = new PIXI.Sprite(texture);
 
-                        videoSprite.width = renderer.width;
+                        videoSprite.width = content.width;
                         videoSprite.height = renderer.height;
 
                         stage.addChild(videoSprite);

@@ -43,24 +43,42 @@ h1{
 	padding-left: 5rem;
 }
 
-#plunge{
-	width: 500px;
-	position: relative;
-	margin: 10rem auto 5rem;
-	padding: 2rem;
+#content{
+	width: 100%;
+	margin: 0 auto;
+}
+
+#plunge, #counter{
 	text-align: center;
 	color: #ffbb11;
-	border: 2px #ffbb11 solid;
+	border: 2px #1E2A2D solid;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
 
-.plunge-text,.canvas-text{
+#plunge{
+	width: 50%;
+	position: relative;
+	margin-top: 10rem;
+	margin-left: 15%;
+	margin-bottom: 5rem;
+	padding: 2rem;
+}
+
+#counter{
+	width: 160px;
+	position: fixed;
+	top: 10rem;
+	right: 15%;
+	padding: 0.8rem;
+}
+
+.upper-text,.lower-text{
 	padding-bottom: 5px;
 }
 
-.canvas-text{
+.lower-text{
 	color: #fff;
 }
 
