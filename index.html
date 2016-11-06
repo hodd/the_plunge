@@ -71,14 +71,22 @@
             // socket connection
             var socket = io.connect('http://localhost:8080');
 
-            var stageWidth = 400; // px
+            // stage size
+            var stageWidth = 420; // px
             var stageHeight = 0;
 
-            // create the renderer
+            // content size
+            var contentWidth = 380; // px
+            //var contentHeight = 0;
+
+            // content padding
+            var paddingLeft = 20; // px
+
+            // create the renderer (canvas)
             var renderer = PIXI.autoDetectRenderer(stageWidth, stageHeight, {
                 backgroundColor : 0x1E2A2D,
-                antialias: false,
                 //transparent: true,
+                antialias: false,
                 resolution: 1
             });
 
@@ -86,7 +94,6 @@
 
             // new container object called 'stage'
             var stage = new PIXI.Container();
-
             var i = 0;
 
             socket.on('tweet', function(tweet) {
@@ -95,40 +102,41 @@
 
                 if (typeof(tweet.entities.media) !== 'undefined') {
 
-                    stageHeight += 200;
+                    stageHeight += 200; // ???
 
                     renderer.resize(stageWidth, stageHeight);
 
+                    // TEXT
                     var username = tweet.user.name; // tweet username
                     var text = tweet.text; // tweet text
-
                     var style = {
                         font: "14px sans-serif",
                         fill: "white",
                         wordWrap : true,
-                        wordWrapWidth : renderer.width // word wrap > canvas size
+                        wordWrapWidth : contentWidth, // px, word wrap
                     };
-
+                    // text object
                     var message = new PIXI.Text(text, style);
-
-                    message.x = 20; // padding 20 px
-                    message.y = i * 200;
+                    message.x = paddingLeft; // px
+                    message.y = i * 200; // ???
 
                     stage.addChild(message);
 
+                    // MEDIA
                     var media = tweet.entities.media[0];
-
 
                     console.log('MEDIA > ', media, ' id = ', media.id, ' type=', media.type, ' url =', media.media_url);
 
                     if (media.type == 'photo') {
 
+                        // photo object
                         var image = PIXI.Sprite.fromImage(media.media_url);
 
-                        //image.scale.set(0.5,0.5)
+                        //image.scale.set(1,1); // 100%
+                        //image.scale.set(0.5,0.5); // 50%
 
-                        image.width = 100;
-                        image.height = 100;
+                        image.width = contentWidth; // px
+                        image.height = 200; // RATIO AUTO ??
 
                         image.interactive = true;
                         image.click = function(data) {
@@ -137,8 +145,8 @@
 
                         //console.log('Image > ', image);
 
-                        image.x = 20; // padding 20 px
-                        image.y = message.y + 50; // 50px under the text
+                        image.x = paddingLeft; // px
+                        image.y = message.y + 50; // 50px under the text ???
 
                         stage.addChild(image);
 
