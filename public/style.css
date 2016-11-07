@@ -45,7 +45,7 @@ h1{
 
 #content{
 	width: 100%;
-	margin: 0 auto;
+	margin: 10rem auto;
 }
 
 #plunge, #counter{
@@ -58,20 +58,23 @@ h1{
 }
 
 #plunge{
-	width: 50%;
+	width: 500px;
 	position: relative;
-	margin-top: 10rem;
-	margin-left: 15%;
-	margin-bottom: 5rem;
-	padding: 2rem;
+	margin: 10rem auto;
+	padding: 2rem 2rem 3rem;
+	z-index: 1;
 }
 
 #counter{
-	width: 160px;
 	position: fixed;
-	top: 10rem;
-	right: 15%;
+	width: 160px;
+	/*background: rgba(44,63,68,0.7);*/
+	background: #2c3f44;
+	margin-left: 10%;
+	margin-bottom: 12%;
+	bottom: 0;
 	padding: 0.8rem;
+	z-index: 10;
 }
 
 .upper-text,.lower-text{
@@ -82,14 +85,14 @@ h1{
 	color: #fff;
 }
 
-ul{
+/*ul{
 	list-style: none;
 }
 
 li,a{
 	text-decoration: none;
 	color: #222;
-}
+}*/
 
 footer{
 	width: 100%;
@@ -104,3 +107,4 @@ footer{
 	bottom: 0;
 	left: 0;
 }
+
