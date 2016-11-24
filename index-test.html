@@ -21,15 +21,15 @@
     <title>The plunge</title>
 
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!--[if lt IE 8]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!--[if lt IE 7]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
 <!-- <link rel="icon" href="favicon.ico" sizes="16x16" type="image/png"> -->
@@ -48,22 +48,10 @@
         <h1>the plunge</h1>
     </header>
 
-    <section id="content">
-
-        <div id="counter">
-            <p class="upper-text">#counter</p>
-            <p class="lower-text">
-                my score : <br>
-                <span id="points"></span> points
-            </p>
-        </div>
-
-        <div id="plunge">
-                <p class="upper-text">#plunge</p>
-                <p class="lower-text">v This is my canvas v</p>
-        </div>
-
-    </section>
+    <div id="plunge" class="container">
+        <p class="plunge-text">#plunge</p>
+        <p class="canvas-text">v This is my canvas v</p>
+    </div>
 
     <footer>
         <p>This is my footer</p>
@@ -83,33 +71,22 @@
             // socket connection
             var socket = io.connect('http://localhost:8080');
 
-            // counter
-            var scoreSpan = document.getElementById('points');
-            var score = 0;
-            scoreSpan.innerHTML = score;
-
-            // stage size
             var stageWidth = 420; // px
             var stageHeight = 0;
 
-            // content size
-            var contentWidth = 380; // px
-
-            // content padding
-            var paddingLeft = 20; // px
-
-            // create the renderer (canvas)
+            // create the renderer
             var renderer = PIXI.autoDetectRenderer(stageWidth, stageHeight, {
-                //backgroundColor : 0x1E2A2D,
-                transparent: true,
+                backgroundColor : 0x1E2A2D,
                 antialias: false,
+                //transparent: true,
                 resolution: 1
             });
 
-            // renderer.view.style.border = "1px solid white"; // canvas border
+            //renderer.view.style.border = "1px solid white"; // canvas border
 
             // new container object called 'stage'
             var stage = new PIXI.Container();
+
             var i = 0;
 
             socket.on('tweet', function(tweet) {
@@ -118,66 +95,67 @@
 
                 if (typeof(tweet.entities.media) !== 'undefined') {
 
-                    stageHeight += 400; // + max size
-
-                    renderer.resize(stageWidth, stageHeight);
-
                     // TEXT
                     var username = tweet.user.name; // tweet username
                     var text = tweet.text; // tweet text
                     var style = {
-                        font: "14px 'Open Sans', sans-serif",
+                        font: "14px sans-serif",
                         fill: "white",
                         wordWrap : true,
-                        wordWrapWidth : contentWidth, // px, word wrap
+                        wordWrapWidth : stageWidth, // word wrap > canvas size ???
                     };
                     // text object
                     var message = new PIXI.Text(text, style);
-                    message.x = paddingLeft; // px
-                    message.y = i * 350; // i x content height ???
+                    message.x = 20; // padding 20 px
+                    message.y = i * stageHeight; // space between tweets ????
 
                     stage.addChild(message);
 
                     // MEDIA
                     var media = tweet.entities.media[0];
 
-                    console.log('MEDIA >>>>> ', media, ' id = ', media.id, ' type=', media.type, ' url =', media.media_url);
+                    // console.log('MEDIA > ', media, ' id = ', media.id, ' type=', media.type, ' url =', media.media_url);
 
                     if (media.type == 'photo') {
 
                         // photo object
                         var image = PIXI.Sprite.fromImage(media.media_url);
 
-                        image.scale.set(0.4,0.4);
-                        image.width = contentWidth; // px
+                        // image.scale.set(1,1); // 100%
 
-                        // var ratio = image.width / contentWidth;
-                        // image.scale.y = ratio;
+                        image.width = 400; // 400px
+                        image.scale.x = 1;
+
+                        image.width = image.scale.x;
+                        image.scale.y = 1;
+
+                        //stageHeight += image.height + 50; // photo block height = (photo height + 50 px padding) ???
 
                         image.interactive = true;
-                        image.onclick = function(data) {
-                            score += 1;
-                            // scoreSpan.innerHTML = score; // ??
-                        };
+                        image.click = function(data) {
+                            console.log("Image click!!!");
+                        }
 
                         //console.log('Image > ', image);
 
-                        image.x = paddingLeft; // px
-                        image.y = message.y + 40; // px under the text ???
+                        image.x = 0;
+                        image.y = message.y + 200; // 200px under the text
 
                         stage.addChild(image);
 
-                    } /*else if (media.type == 'video') {
+                        renderer.resize(stageWidth, stageHeight); // photo render = 400px x (photo height + 50px padding) ????
 
-                        console.log('VIDEO!!! >>>>>>', media.media_url);
+                    }/* else if (media.type == 'video') {
+
+                        console.log('VIDEO!!! ', media.media_url);
 
                         // create a video texture from a path
                         var texture = PIXI.Texture.fromVideo(media.media_url);
 
-                        // create a new sprite using the video texture
+                        // create a new Sprite using the video texture (yes it's that easy)
                         var videoSprite = new PIXI.Sprite(texture);
 
-                        videoSprite.width = content.width;
+                        videoSprite.width = renderer.width;
                         videoSprite.height = renderer.height;
 
                         stage.addChild(videoSprite);
@@ -201,7 +179,8 @@
                 renderer.render(stage);
             }
         }
-	</script>
+
+    </script>
 
 </body>
 </html>

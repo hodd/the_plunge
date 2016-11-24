@@ -22,6 +22,26 @@ app.get('/', function (req, res) { // GET request homepage
 var config = require('./config'); // twitter keys
 var T = new twitter(config);
 
+////////// start T.get //////////
+// var param = { // twitter request
+// 	q: 'basejump' || 'freefly' || 'wingsuit' || 'windtunnel' || 'skydiving'
+// 	&& 'video' || 'gopro' && 'jump' || 'fly' || 'cloud' || 'dream' || 'sky',
+// 	count: 10,
+// };
+// // twitter connection and search
+// T.get('search/tweets', param, function(err, data, response) {
+
+// 	var tweets = data.statuses;
+// 	//console.log(tweets);
+// 	for (var i = 0; i < tweets.length; i++) {
+// 		console.log(i +'/ '+ tweets[i].text)+'\n';
+// 		io.emit('tweet', tweets[i].text); // sending twitter event
+// 	}
+// });
+////////// end of T.get //////////
+
+
+////////// start T stream //////////
 var i = 1;
 
 T.on('tweet', function (tweet) {
@@ -34,7 +54,6 @@ T.on('tweet', function (tweet) {
 T.on('error', function (err) {
   console.log('Twitter stream error')
 })
-
 // twitter request
 T.track('skydiving');
 T.track('freefly');
@@ -44,6 +63,9 @@ T.track('basejump');
 T.track('dropzone');
 T.track('inclouds');
 T.track('clouds');
+//T.track('trump');
+
+////////// end of T stream //////////
 
 
 
