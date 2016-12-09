@@ -99,14 +99,24 @@
             var paddingLeft = 20; // px
 
             // create the renderer (canvas)
-            var renderer = PIXI.autoDetectRenderer(stageWidth, stageHeight, {
+            var renderer = new PIXI.WebGLRenderer(stageWidth, stageHeight, {
                 //backgroundColor : 0x1E2A2D,
                 transparent: true,
                 antialias: false,
                 resolution: 1
             });
 
-            // renderer.view.style.border = "1px solid white"; // canvas border
+            // to align Pixi's canvas NE PAS CONFONDRE CANVAS ET DIV #PLUNGE !!!!!!!!!!
+            /*let scale = scaleToWindow(renderer.view);
+            pointer.x = pointer.x/scale;
+            pointer.y = pointer.y/scale;*/
+
+            renderer.view.style.border = "1px solid white"; // canvas border
+
+            // (!!!!)
+            // renderer.view.style.position = "absolute";
+            // renderer.view.style.width = window.innerWidth = "px";
+            // renderer.view.style.display = "block";
 
             // new container object called 'stage'
             var stage = new PIXI.Container();
