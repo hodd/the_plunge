@@ -1,7 +1,8 @@
-The plunge (v 0.8.1 - in progress)
+The plunge (v 0.8.1)
 =========
 
 This app works on nodeJS v7.0.0 (node -v)
+It was a Node/Twitter API test.
 
 ----------
 Installing :
